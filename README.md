@@ -1,7 +1,7 @@
 # light-lang
 
 Light-lang is an experimental programming language that compiles to JavaScript.
-I started this project because I wanted to learn more about compiler backends.
+I started this project because I wanted to learn more about compilers.
 It was inspired by
 [mini-typescript](https://github.com/sandersn/mini-typescript). and The syntax
 is inspired by TypeScript.
