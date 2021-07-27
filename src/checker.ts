@@ -81,6 +81,8 @@ export function check(module: Module) {
         }
         return type;
       }
+      default:
+        return errorType;
     }
   }
 

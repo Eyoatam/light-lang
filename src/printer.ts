@@ -23,7 +23,7 @@ function printStatement(statement: Statement) {
     case Node.FunctionDeclaration: {
       return `function ${statement.name.text}(${
         statement.params[0].text
-      }){ // replace with real code }`;
+      }) { return ${statement.returnVal} }`;
     }
     case Node.TypeAlias:
       return `type ${statement.name.text} = ${statement.typename.text}`;
@@ -40,6 +40,8 @@ function printExpression(expression: Expression): string {
       return `"${expression.text}"`;
     case Node.Assignment:
       return `${expression.name.text} = ${printExpression(expression.value)}`;
+    default:
+      return "undefined";
   }
 }
 

@@ -54,7 +54,8 @@ export type Expression =
   | Identifier
   | NumberLiteral
   | StringLiteral
-  | Assignment;
+  | Assignment
+  | Return;
 
 export interface Identifier extends Location {
   kind: Node.Identifier;
@@ -88,6 +89,7 @@ export type Statement =
 export interface Return extends Location {
   kind: Node.Return;
   expr: Expression;
+  value: string;
 }
 
 export interface ExpressionStatement extends Location {
@@ -122,6 +124,7 @@ export interface FunctionDeclaration extends Location {
   params: Identifier[];
   body: Statement;
   expr: Expression;
+  returnVal: string;
 }
 
 export type Declaration = Var | TypeAlias; // plus others, like function

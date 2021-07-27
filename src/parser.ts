@@ -112,11 +112,17 @@ export function parse(lexer: Lexer): Module {
         parseExpected(Token.RightParenthesis);
       }
       parseExpected(Token.LeftCurlyBrace);
+      let returnVal;
+      if (tryParseToken(Token.Return)) {
+        returnVal = lexer.text();
+      }
+      lexer.scan();
+      console.log(lexer.text());
       const body = parseStatement();
-      parseExpected(Token.Return);
-      const returnValue = parseExpression();
+      console.log(body);
+      const expr = parseExpression();
       if (tryParseToken(Token.RightCurlyBrace)) {
-        parseExpected(Token.EOF);
+        lexer.scan();
       }
       return {
         kind: Node.FunctionDeclaration,
@@ -124,7 +130,8 @@ export function parse(lexer: Lexer): Module {
         params,
         typename,
         body,
-        expr: returnValue,
+        expr,
+        returnVal: typeof returnVal !== "undefined" ? returnVal : "",
         pos,
       };
     } else if (tryParseToken(Token.Type)) {
@@ -149,10 +156,14 @@ export function parse(lexer: Lexer): Module {
       parseStatement,
       () => tryParseToken(Token.Semicolon),
     );
-    parseExpected(Token.EOF);
+    parseExpected(Token.Identifier);
     return { statements, locals: new Map() };
   }
 }
 
-const code = JSON.stringify(parse(lex("function coder(code) {}")));
+const inputCode = new TextDecoder().decode(
+  Deno.readFileSync("./examples/variables.light"),
+);
+
+const code = JSON.stringify(parse(lex(inputCode)));
 Deno.writeFileSync("./code.json", new TextEncoder().encode(code));
