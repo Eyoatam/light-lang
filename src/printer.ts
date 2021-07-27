@@ -23,12 +23,7 @@ function printStatement(statement: Statement) {
     case Node.FunctionDeclaration: {
       return `function ${statement.name.text}(${
         statement.params[0].text
-<<<<<<< HEAD
       }) { return ${statement.returnVal} }`;
-=======
-      }){ // replace with real code
-      }`;
->>>>>>> 451b7875b50f2f43feb514b7c1de561fe22fc4fa
     }
     case Node.TypeAlias:
       return `type ${statement.name.text} = ${statement.typename.text}`;
