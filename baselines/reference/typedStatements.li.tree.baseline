@@ -16,18 +16,26 @@
       },
       "typename": {
         "kind": "Identifier",
-        "text": "string"
+        "text": "number"
       },
       "init": {
-        "kind": "Literal",
+        "kind": "NumberLiteral",
         "value": 1
       }
     },
     {
-      "kind": "ExpressionStatement",
-      "expr": {
+      "kind": "Let",
+      "name": {
         "kind": "Identifier",
-        "text": "(missing)"
+        "text": "s"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "string"
+      },
+      "init": {
+        "kind": "StringLiteral",
+        "text": "hello"
       }
     }
   ]

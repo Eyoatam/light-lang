@@ -1,0 +1,10 @@
+[
+  {
+    "pos": 40,
+    "message": "Expected identifier or literal but got Equals"
+  },
+  {
+    "pos": 48,
+    "message": "parseToken: Expected Identifier but got Unknown"
+  }
+]

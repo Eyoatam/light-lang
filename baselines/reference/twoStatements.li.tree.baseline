@@ -1,6 +1,6 @@
 {
   "locals": {
-    "arthurTwoShedsJackson": [
+    "one": [
       {
         "kind": "Var",
         "pos": 3
@@ -12,10 +12,10 @@
       "kind": "Var",
       "name": {
         "kind": "Identifier",
-        "text": "arthurTwoShedsJackson"
+        "text": "one"
       },
       "init": {
-        "kind": "Literal",
+        "kind": "NumberLiteral",
         "value": 1
       }
     },
@@ -25,10 +25,10 @@
         "kind": "Assignment",
         "name": {
           "kind": "Identifier",
-          "text": "arthurTwoShedsJackson"
+          "text": "one"
         },
         "value": {
-          "kind": "Literal",
+          "kind": "NumberLiteral",
           "value": 2
         }
       }
@@ -36,8 +36,7 @@
     {
       "kind": "ExpressionStatement",
       "expr": {
-        "kind": "Identifier",
-        "text": "(missing)"
+        "kind": "Identifier"
       }
     }
   ]

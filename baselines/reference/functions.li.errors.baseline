@@ -1,0 +1,10 @@
+[
+  {
+    "pos": 38,
+    "message": "Expected identifier or literal but got Semicolon"
+  },
+  {
+    "pos": 40,
+    "message": "Expected identifier or literal but got RightCurlyBrace"
+  }
+]

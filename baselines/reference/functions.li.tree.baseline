@@ -1,0 +1,32 @@
+{
+  "locals": {},
+  "statements": [
+    {
+      "kind": "FunctionDeclaration",
+      "name": {
+        "kind": "Identifier",
+        "text": "main"
+      },
+      "params": {
+        "0": {
+          "kind": "Identifier",
+          "text": "a"
+        }
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "string"
+      },
+      "body": {
+        "kind": "ExpressionStatement",
+        "expr": {
+          "kind": "Identifier"
+        }
+      },
+      "expr": {
+        "kind": "Identifier"
+      },
+      "returnVal": "a"
+    }
+  ]
+}

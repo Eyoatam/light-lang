@@ -1,6 +1,6 @@
 [
   {
-    "pos": 27,
+    "pos": 22,
     "message": "Expected identifier or literal but got EOF"
   }
 ]
