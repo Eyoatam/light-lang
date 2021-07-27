@@ -8,7 +8,6 @@ import {
   Token,
 } from "./ast.ts";
 import { error } from "./error.ts";
-import { lex } from "./lexer.ts";
 
 export function parse(lexer: Lexer): Module {
   lexer.scan();
@@ -118,9 +117,7 @@ export function parse(lexer: Lexer): Module {
         returnVal = lexer.text();
       }
       lexer.scan();
-      console.log(lexer.text());
       const body = parseStatement();
-      console.log(body);
       const expr = parseExpression();
       if (tryParseToken(Token.RightCurlyBrace)) {
         lexer.scan();
@@ -161,10 +158,3 @@ export function parse(lexer: Lexer): Module {
     return { statements, locals: new Map() };
   }
 }
-
-const inputCode = new TextDecoder().decode(
-  Deno.readFileSync("./examples/variables.light"),
-);
-
-const code = JSON.stringify(parse(lex(inputCode)));
-Deno.writeFileSync("./code.json", new TextEncoder().encode(code));
