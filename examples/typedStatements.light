@@ -1,0 +1,3 @@
+var s: number = 1;
+let s: string = "hello";
+

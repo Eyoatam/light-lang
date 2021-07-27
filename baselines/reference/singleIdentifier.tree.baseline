@@ -1,0 +1,19 @@
+{
+  "locals": {},
+  "statements": [
+    {
+      "kind": "ExpressionStatement",
+      "expr": {
+        "kind": "Identifier",
+        "text": "x"
+      }
+    },
+    {
+      "kind": "ExpressionStatement",
+      "expr": {
+        "kind": "Identifier",
+        "text": "(missing)"
+      }
+    }
+  ]
+}

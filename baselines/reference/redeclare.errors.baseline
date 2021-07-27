@@ -1,0 +1,10 @@
+[
+  {
+    "pos": 22,
+    "message": "Expected identifier or literal but got EOF"
+  },
+  {
+    "pos": 14,
+    "message": "Cannot redeclare x; first declared at 3"
+  }
+]

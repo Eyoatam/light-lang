@@ -1,0 +1,10 @@
+[
+  {
+    "pos": 1,
+    "message": "Expected identifier or literal but got Unknown"
+  },
+  {
+    "pos": 2,
+    "message": "parseToken: Expected EOF but got Unknown"
+  }
+]

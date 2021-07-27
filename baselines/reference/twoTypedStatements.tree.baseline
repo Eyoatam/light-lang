@@ -1,0 +1,27 @@
+{
+  "locals": {
+    "s": [
+      {
+        "kind": "Var",
+        "pos": 3
+      }
+    ]
+  },
+  "statements": [
+    {
+      "kind": "Var",
+      "name": {
+        "kind": "Identifier",
+        "text": "s"
+      },
+      "typename": {
+        "kind": "Identifier",
+        "text": "string"
+      },
+      "init": {
+        "kind": "Identifier",
+        "text": "(missing)"
+      }
+    }
+  ]
+}

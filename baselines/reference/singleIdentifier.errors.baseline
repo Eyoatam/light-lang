@@ -1,0 +1,10 @@
+[
+  {
+    "pos": 3,
+    "message": "Expected identifier or literal but got EOF"
+  },
+  {
+    "pos": 1,
+    "message": "Could not resolve x"
+  }
+]
