@@ -101,12 +101,13 @@ export function parse(lexer: Lexer): Module {
       const params = [];
       let typename;
       if (tryParseToken(Token.LeftParenthesis)) {
+        loop:
         while (true) {
           const param = parseIdentifier();
           typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
           params.push(param);
           if (!tryParseToken(Token.Comma)) {
-            break;
+            break loop;
           }
         }
         parseExpected(Token.RightParenthesis);
@@ -143,7 +144,7 @@ export function parse(lexer: Lexer): Module {
     return { kind: Node.ExpressionStatement, expr: parseExpression(), pos };
   }
 
-  function parseSeparated<T>(element: () => T, separator: () => unknown) {
+  function parseSeparated<T>(element: () => T, separator: () => unknown): T[] {
     const list = [element()];
     while (separator()) {
       list.push(element());

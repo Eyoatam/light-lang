@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 var x: number = 1;
 let y: string = "Hello";
+=======
+function code(coder: string) {
+  coder = coder + "world"
+  return coder;
+}
+>>>>>>> 451b7875b50f2f43feb514b7c1de561fe22fc4fa
