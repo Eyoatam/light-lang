@@ -1,1 +1,0 @@
-{"statements":[{"kind":7,"name":{"kind":0,"text":"x","pos":5},"typename":{"kind":0,"text":"number","pos":13},"init":{"kind":2,"value":1,"pos":17},"pos":3},{"kind":8,"name":{"kind":0,"text":"y","pos":24},"typename":{"kind":0,"text":"string","pos":32},"init":{"kind":1,"text":"Hello","pos":36},"pos":22}],"locals":{}}
