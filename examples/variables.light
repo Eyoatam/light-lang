@@ -1,3 +1,4 @@
 function code(coder: string) {
+  coder = coder + "world"
   return coder;
 }

@@ -101,12 +101,13 @@ export function parse(lexer: Lexer): Module {
       const params = [];
       let typename;
       if (tryParseToken(Token.LeftParenthesis)) {
+        loop:
         while (true) {
           const param = parseIdentifier();
           typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
           params.push(param);
           if (!tryParseToken(Token.Comma)) {
-            break;
+            break loop;
           }
         }
         parseExpected(Token.RightParenthesis);
@@ -115,9 +116,6 @@ export function parse(lexer: Lexer): Module {
       const body = parseStatement();
       parseExpected(Token.Return);
       const returnValue = parseExpression();
-      if (tryParseToken(Token.RightCurlyBrace)) {
-        parseExpected(Token.EOF);
-      }
       return {
         kind: Node.FunctionDeclaration,
         name,
@@ -136,7 +134,7 @@ export function parse(lexer: Lexer): Module {
     return { kind: Node.ExpressionStatement, expr: parseExpression(), pos };
   }
 
-  function parseSeparated<T>(element: () => T, separator: () => unknown) {
+  function parseSeparated<T>(element: () => T, separator: () => unknown): T[] {
     const list = [element()];
     while (separator()) {
       list.push(element());
@@ -154,5 +152,5 @@ export function parse(lexer: Lexer): Module {
   }
 }
 
-const code = JSON.stringify(parse(lex("function coder(code) {}")));
-Deno.writeFileSync("./code.json", new TextEncoder().encode(code));
+const code = JSON.stringify(parse(lex("function coder(code: string) {}")));
+Deno.writeFileSync("./ast.json", new TextEncoder().encode(code));

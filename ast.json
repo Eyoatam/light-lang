@@ -4,8 +4,9 @@
       "kind": 5,
       "name": { "kind": 0, "text": "coder", "pos": 14 },
       "params": [{ "kind": 0, "text": "code", "pos": 19 }],
-      "body": { "kind": 4, "expr": { "kind": 0, "pos": 23 }, "pos": 23 },
-      "expr": { "kind": 0, "pos": 23 },
+      "typename": { "kind": 0, "text": "string", "pos": 27 },
+      "body": { "kind": 4, "expr": { "kind": 0, "pos": 31 }, "pos": 31 },
+      "expr": { "kind": 0, "pos": 31 },
       "pos": 8
     }
   ],

@@ -23,7 +23,8 @@ function printStatement(statement: Statement) {
     case Node.FunctionDeclaration: {
       return `function ${statement.name.text}(${
         statement.params[0].text
-      }){ // replace with real code }`;
+      }){ // replace with real code
+      }`;
     }
     case Node.TypeAlias:
       return `type ${statement.name.text} = ${statement.typename.text}`;
