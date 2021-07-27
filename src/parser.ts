@@ -8,7 +8,6 @@ import {
   Token,
 } from "./ast.ts";
 import { error } from "./error.ts";
-import { lex } from "./lexer.ts";
 
 export function parse(lexer: Lexer): Module {
   lexer.scan();
@@ -96,6 +95,43 @@ export function parse(lexer: Lexer): Module {
       parseExpected(Token.Equals);
       const init = parseExpression();
       return { kind: Node.Let, name, typename: typename!, init, pos };
+    } else if (tryParseToken(Token.Function)) {
+      const name = parseIdentifier();
+      const params = [];
+      let typename;
+      if (tryParseToken(Token.LeftParenthesis)) {
+        loop:
+        while (true) {
+          const param = parseIdentifier();
+          typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
+          params.push(param);
+          if (!tryParseToken(Token.Comma)) {
+            break loop;
+          }
+        }
+        parseExpected(Token.RightParenthesis);
+      }
+      parseExpected(Token.LeftCurlyBrace);
+      let returnVal;
+      if (tryParseToken(Token.Return)) {
+        returnVal = lexer.text();
+      }
+      lexer.scan();
+      const body = parseStatement();
+      const expr = parseExpression();
+      if (tryParseToken(Token.RightCurlyBrace)) {
+        lexer.scan();
+      }
+      return {
+        kind: Node.FunctionDeclaration,
+        name,
+        params,
+        typename,
+        body,
+        expr,
+        returnVal: typeof returnVal !== "undefined" ? returnVal : "",
+        pos,
+      };
     } else if (tryParseToken(Token.Type)) {
       const name = parseIdentifier();
       parseExpected(Token.Equals);
@@ -105,7 +141,7 @@ export function parse(lexer: Lexer): Module {
     return { kind: Node.ExpressionStatement, expr: parseExpression(), pos };
   }
 
-  function parseSeparated<T>(element: () => T, separator: () => unknown) {
+  function parseSeparated<T>(element: () => T, separator: () => unknown): T[] {
     const list = [element()];
     while (separator()) {
       list.push(element());
@@ -118,7 +154,7 @@ export function parse(lexer: Lexer): Module {
       parseStatement,
       () => tryParseToken(Token.Semicolon),
     );
-    parseExpected(Token.EOF);
+    parseExpected(Token.Identifier);
     return { statements, locals: new Map() };
   }
 }
