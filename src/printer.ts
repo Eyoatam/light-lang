@@ -4,7 +4,7 @@ export function emit(statements: Statement[]): string {
   return statements.map(printStatement).join(";\n");
 }
 
-function printStatement(statement: Statement) {
+function printStatement(statement: Statement): string {
   switch (statement.kind) {
     case Node.ExpressionStatement:
       return printExpression(statement.expr);
@@ -19,6 +19,11 @@ function printStatement(statement: Statement) {
       return `let ${statement.name.text}${typestring} = ${
         printExpression(statement.init)
       }`;
+    }
+    case Node.FunctionDeclaration: {
+      return `function ${statement.name.text}(${
+        statement.params[0].text
+      }){ // replace with real code }`;
     }
     case Node.TypeAlias:
       return `type ${statement.name.text} = ${statement.typename.text}`;

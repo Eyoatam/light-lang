@@ -35,6 +35,8 @@ export enum Node {
   NumberLiteral,
   Assignment,
   ExpressionStatement,
+  FunctionDeclaration,
+  Return,
   Var,
   Let,
   TypeAlias,
@@ -75,7 +77,18 @@ export interface Assignment extends Location {
   value: Expression;
 }
 
-export type Statement = ExpressionStatement | Var | Let | TypeAlias;
+export type Statement =
+  | ExpressionStatement
+  | Return
+  | Var
+  | Let
+  | TypeAlias
+  | FunctionDeclaration;
+
+export interface Return extends Location {
+  kind: Node.Return;
+  expr: Expression;
+}
 
 export interface ExpressionStatement extends Location {
   kind: Node.ExpressionStatement;
@@ -100,6 +113,15 @@ export interface TypeAlias extends Location {
   kind: Node.TypeAlias;
   name: Identifier;
   typename: Identifier;
+}
+
+export interface FunctionDeclaration extends Location {
+  kind: Node.FunctionDeclaration;
+  name: Identifier;
+  typename?: Identifier;
+  params: Identifier[];
+  body: Statement;
+  expr: Expression;
 }
 
 export type Declaration = Var | TypeAlias; // plus others, like function

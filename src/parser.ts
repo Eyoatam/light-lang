@@ -96,6 +96,37 @@ export function parse(lexer: Lexer): Module {
       parseExpected(Token.Equals);
       const init = parseExpression();
       return { kind: Node.Let, name, typename: typename!, init, pos };
+    } else if (tryParseToken(Token.Function)) {
+      const name = parseIdentifier();
+      const params = [];
+      let typename;
+      if (tryParseToken(Token.LeftParenthesis)) {
+        while (true) {
+          const param = parseIdentifier();
+          typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
+          params.push(param);
+          if (!tryParseToken(Token.Comma)) {
+            break;
+          }
+        }
+        parseExpected(Token.RightParenthesis);
+      }
+      parseExpected(Token.LeftCurlyBrace);
+      const body = parseStatement();
+      parseExpected(Token.Return);
+      const returnValue = parseExpression();
+      if (tryParseToken(Token.RightCurlyBrace)) {
+        parseExpected(Token.EOF);
+      }
+      return {
+        kind: Node.FunctionDeclaration,
+        name,
+        params,
+        typename,
+        body,
+        expr: returnValue,
+        pos,
+      };
     } else if (tryParseToken(Token.Type)) {
       const name = parseIdentifier();
       parseExpected(Token.Equals);
@@ -122,3 +153,6 @@ export function parse(lexer: Lexer): Module {
     return { statements, locals: new Map() };
   }
 }
+
+const code = JSON.stringify(parse(lex("function coder(code) {}")));
+Deno.writeFileSync("./code.json", new TextEncoder().encode(code));

@@ -1,2 +1,3 @@
-var x: number = 1;
-let y: string = "Hello";
+function code(coder: string) {
+  return coder;
+}
