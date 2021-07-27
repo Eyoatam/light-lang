@@ -4,7 +4,7 @@ export function emit(statements: Statement[]): string {
   return statements.map(printStatement).join(";\n");
 }
 
-function printStatement(statement: Statement): string {
+function printStatement(statement: Statement) {
   switch (statement.kind) {
     case Node.ExpressionStatement:
       return printExpression(statement.expr);
