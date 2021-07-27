@@ -41,6 +41,10 @@ export function check(module: Module) {
         }
         return type;
       }
+      case Node.FunctionDeclaration: {
+        const type = checkType(statement.typename!);
+        return type;
+      }
       case Node.TypeAlias:
         return checkType(statement.typename);
       default:
@@ -77,6 +81,8 @@ export function check(module: Module) {
         }
         return type;
       }
+      default:
+        return errorType;
     }
   }
 
