@@ -16,6 +16,17 @@ function main(a: string) {
 }
 ```
 
+## Setup
+
+```sh
+git clone https://github.com/Eyoatam/light-lang.git
+# open with vscode
+code light-lang/
+
+# Run the Compiler
+deno run --allow-read --allow-write src/main.ts
+```
+
 ## Inspirations
 
 - [mini-typescript](https://github.com/sandersn/mini-typescript)
