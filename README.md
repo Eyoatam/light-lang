@@ -2,8 +2,8 @@
 
 > Light is a programming language that compiles to JavaScript.
 
-I made this compiler because I wanted to learn more about compilers. it is largely an experiment meant for learning.
-**It is not intended for real use.**
+I made this compiler because I wanted to learn more about compilers. it is
+largely an experiment meant for learning. **It is not intended for real use.**
 
 ## Example
 
